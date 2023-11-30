@@ -1,17 +1,14 @@
-import getpass
+import requests
+from bs4 import BeautifulSoup
+from selenium import webdriver
 
-# import oracledb
-#
-# un = 'admin'
-# cs = 'adb.us-sanjose-1.oraclecloud.com:1522/g1d275a9f70cf8a_cydb01_high.adb.oraclecloud.com'
-# pw = '!Al033626699'
-#
-# with oracledb.connect(user=un, password=pw, dsn=cs) as connection:
-#     with connection.cursor() as cursor:
-#         sql = """select sysdate from dual"""
-#         for r in cursor.execute(sql):
-#             print(r)
+# res = requests.get('https://pala.tw/js-example/')
+# print(res.text)
+# input: title
+# > 消失的文字
+tag = input("Input element. add ',' before class; add '#' before id\n")
+res = requests.get("https://pala.tw/js-example/")
+soup = BeautifulSoup(res.text, 'lxml')
 
-import cx_Oracle
-tns = 'admin/!Al033626699@adb.us-sanjose-1.oraclecloud.com:1522/g1d275a9f70cf8a_cydb01_high.adb.oraclecloud.com'
-db1 = cx_Oracle.connect(tns)
+for drink in soup.select('{}'.format(tag)):
+    print(drink.getText())
