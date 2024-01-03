@@ -17,8 +17,10 @@ import heapq
 heap_pq = []
 heapq.heappush(heap_pq, (2, "two"))
 heapq.heappush(heap_pq, (3, "three"))
-heapq.heappush(heap_pq, (1, "one"))
+heapq.heappush(heap_pq, (1, "bbb"))
+heapq.heappush(heap_pq, (1, "aaa"))
 heapq.heappush(heap_pq, (4, "four"))
+heapq.heappush(heap_pq, (4, "aaa"))
 while heap_pq:
     print(heapq.heappop(heap_pq), end="")
 print("\n")
