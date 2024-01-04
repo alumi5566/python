@@ -75,7 +75,7 @@ def solveNQueens(n):
                     if isValid(i, j, board):
                         # print("valid:", i, j)
                         if queen+1 == n:
-                            print(board)
+                            # print(board)
                             ret.add(tuple(map(tuple, board)))
                             # ret.append(copy.copy(board))
                             board[i][j] = '.'
@@ -97,8 +97,41 @@ def solveNQueens(n):
 
     return res
 
+def solveNQueensDFS(n):
+    """
+    :type n: int
+    :rtype: List[List[str]]
+    """
+    def dfs(col,vals):
+        if col==n: #每行都run好了
+            res.append(vals)
+            return
+        curStr='.'*n
+        for row in range(n): #決定row的位置
+            if check(col,row): #查看是否可以放置
+                board[col]=row
+                #遞迴決定下一行
+                dfs(col+1,vals+[ curStr[:row]+'Q'+curStr[row+1:] ])
+
+    def check(col,row):
+        for pos in range(col): #看先前的其他行是否已經有人列與當前row相等
+            #若有哪列已經與row相等 or 斜對角相等 則false
+            if board[pos]==row or abs(col-pos)==abs(row-board[pos]):
+                return False
+        return True
+
+    board=[-1]*n #board[x]=y : 第x行、第y列中放置queen
+    res=[]
+    dfs(0,[])
+    # print(len(res))
+    return res
+
 ret = solveNQueens(7)
+print("sol: ", len(ret))
 print("sol: ", ret)
 
+ret = solveNQueensDFS(7)
+print("sol: ", len(ret))
+print("sol: ", ret)
 # retList = [list(item) for item in ret]
 # print("sol: ", retList)
