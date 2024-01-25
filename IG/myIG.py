@@ -15,10 +15,12 @@ bot = Bot()
 bot.login(username=username, password=password, use_cookie=False, ask_for_code=True) 
 
 bot.send_message("This is test message", ["se19910429"])
-followers = bot.get_user_followers("se19910429")
+ID = bot.get_your_medias("lego")
+followers = bot.get_user_followers(ID)
 # print(followers)
 # for f in followers:
 print("# of followers: ", len(followers))
+print("follower #0: ", followers[0])
 print("\t",bot.get_user_info(followers[0]))
 
 # Getting followers of 450725417: 100%|█████████████████████████████████████████████████████████████| 539/539 [00:06<00:00, 77.56it/s]
